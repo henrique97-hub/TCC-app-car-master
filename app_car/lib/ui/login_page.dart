@@ -92,7 +92,6 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => HomePage())
                       );
-
                     }
                     else {
                       print('Senha invalida!');
