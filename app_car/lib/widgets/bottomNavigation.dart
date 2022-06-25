@@ -15,6 +15,11 @@ class _BottomNavigationState extends State<BottomNavigation>{
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Color(0X7A7A7A),
+      selectedItemColor: Colors.white,
+      unselectedItemColor: Colors.white,
+
         items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.help),
@@ -39,7 +44,7 @@ class _BottomNavigationState extends State<BottomNavigation>{
               label: 'Usuário',
               backgroundColor: Colors.transparent)
         ],
-        backgroundColor: Colors.transparent
+
     );
   }
 }

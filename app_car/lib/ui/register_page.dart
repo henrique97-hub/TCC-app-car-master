@@ -1,4 +1,7 @@
 import 'package:app_car/ui/login_page.dart';
+import 'package:app_car/ui/template_color.dart';
+import 'package:app_car/ui/teste_widget.dart';
+import 'package:app_car/widgets/bottomNavigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +13,32 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
   @override
   Widget build(BuildContext context) {
+    final ThemeData tema = ThemeData(
+    brightness: Brightness.dark
+    );
+
+    final LinearGradient gradiente = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Colors.grey.shade900,
+        Colors.grey,
+      ],
+    );
+    
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: tema.backgroundColor ,
+      appBar: AppBar(
+        title: const Center(
+          child: Text('Crie a sua conta'),
+        ),
+      backgroundColor: Colors.black,
+      ),
+
+      
       extendBody: true,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -59,8 +84,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 50),
                 ElevatedButton(
+                  
                   onPressed: () {},
                   child: const Text('Cadastrar'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey[900],
+                    shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5)))
+                  )
+
                 ),
                 const SizedBox(height: 50),
                 ElevatedButton(
@@ -70,12 +101,18 @@ class _RegisterPageState extends State<RegisterPage> {
                     );
                   },
                   child: const Text('Entrar'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey[900],
+                    shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5)))
+                  )
                 )
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigation(),
+      // bottomNavigationBar: FooterNavigation(),
     );
   }
 }

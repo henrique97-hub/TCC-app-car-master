@@ -1,6 +1,7 @@
 
 
 import 'package:app_car/ui/home_page.dart';
+import 'package:app_car/ui/teste_widget.dart';
 import 'package:app_car/widgets/bottomNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
@@ -8,43 +9,30 @@ import 'package:local_auth/local_auth.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
-  static final _auth = LocalAuthentication();
   
-  static Future<bool> hasBiometrics() async {
-    return await _auth.canCheckBiometrics;
-  }
-
-  static Future<bool> authenticate() async {
-    final isAvaliable = await hasBiometrics();
-    if(!isAvaliable) return false;
-    return await _auth.authenticateWithBiometrics(
-      localizedReason: "Use a biometria para prosseguir",
-      useErrorDialogs: true,
-      stickyAuth: true,
-      );
-  }
-
-
-
   @override
   State<LoginPage> createState() => _LoginPageState();
-
 
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String email = '';
+  String usuario = '';
   String senha = '';
   @override
   Widget build(BuildContext context) {
+        final ThemeData tema = ThemeData(
+    brightness: Brightness.dark
+    );
+
     return Scaffold(
+      backgroundColor: tema.backgroundColor,
         appBar: AppBar(
           title: const Center(
             child: Text('Autenticação'),
           ),
           backgroundColor: Colors.black,
         ),
-      backgroundColor: Colors.grey,
+      
       extendBody: true,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -53,11 +41,11 @@ class _LoginPageState extends State<LoginPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   width: 100,
-                  height: 200,
+                  height: 100,
                   child: Image.asset('assets/images/login_image.png')),
                 Container(
                   height: 50,
@@ -65,12 +53,11 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(height: 10),
                 TextField(
                   onChanged: (text) {
-                    email = text;
+                    usuario = text;
                   },
-                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Email'
+                    labelText: 'Usuário',
+                    prefixIcon: Icon(Icons.person)
                   ),
                 ),
                 SizedBox(height: 10),
@@ -80,15 +67,24 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   obscureText: true,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Senha'
+                    labelText: 'Senha',
+                    prefixIcon: Icon(Icons.lock),
                   ),
                 ),
-                SizedBox(height: 15),
+                  Container(
+                    height: 40,
+                    alignment: Alignment.topRight,
+                  child: FlatButton(onPressed: () {},
+                   child: const Text('Esqueci a minha senha',
+                   textAlign: TextAlign.right,
+                   ),
+                   ),
+                ),
+                SizedBox(height: 30),
                 ElevatedButton(
+                  
                   onPressed: () async {
-                    if (email == 'app@car.com.br' && senha == '123'){
-                      // final isAuthenticated = await LoginPage.authenticate();
+                    if (usuario == 'henrique' && senha == '123'){
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => HomePage())
                       );
@@ -97,13 +93,19 @@ class _LoginPageState extends State<LoginPage> {
                       print('Senha invalida!');
                     }
                   },
-                   child: Text('Acessar'))
+                   child: Text('Acessar'),
+                   style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey[900],
+                    shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5)))
+                    
+                  )
+                ),
                 ],
             ),
           ),
         ),
       ),
-        bottomNavigationBar: const BottomNavigation(),
+        bottomNavigationBar: const BottomNavigation()
     );
   }
 }
