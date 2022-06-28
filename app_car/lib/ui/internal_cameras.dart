@@ -52,14 +52,13 @@ class _InternalCamerasState extends State<InternalCameras> {
                  Expanded(
                   child: Row(
                     children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.battery_charging_full_rounded,
-                          color: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(
+                            Icons.battery_charging_full_rounded,
+                            color: Colors.white,
+                          ),
                         ),
-                        onPressed: () {},
-                        
-                      ),
                       Text("       Saúde da bateria externa                                                        98% "),
                     ],
                   ),
