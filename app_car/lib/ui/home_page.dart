@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white,
                         ),
                          ),
-                      Text("       Saúde da bateria externa                 98% "),
+                      Text("       Saúde da bateria externa                                                        98% "),
                     ],
                   ),
                 )),

@@ -1,6 +1,7 @@
 
 
 import 'package:app_car/ui/home_page.dart';
+import 'package:app_car/ui/register_page.dart';
 import 'package:app_car/ui/teste_widget.dart';
 import 'package:app_car/widgets/bottomNavigation.dart';
 import 'package:flutter/material.dart';
@@ -74,7 +75,11 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     height: 40,
                     alignment: Alignment.topRight,
-                  child: FlatButton(onPressed: () {},
+                  child: FlatButton(onPressed: () {
+                     Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => RegisterPage())
+                      );
+                  },
                    child: const Text('Esqueci a minha senha',
                    textAlign: TextAlign.right,
                    ),
@@ -84,14 +89,14 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                   
                   onPressed: () async {
-                    if (usuario == 'henrique' && senha == '123'){
+                    // if (usuario == 'henrique' && senha == '123'){
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => HomePage())
                       );
-                    }
-                    else {
-                      print('Senha invalida!');
-                    }
+                    // }
+                    // else {
+                    //   print('Senha invalida!');
+                    // }
                   },
                    child: Text('Acessar'),
                    style: ElevatedButton.styleFrom(

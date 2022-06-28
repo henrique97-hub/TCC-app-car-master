@@ -60,7 +60,7 @@ class _InternalCamerasState extends State<InternalCameras> {
                         onPressed: () {},
                         
                       ),
-                      Text(" Saúde da bateria externa       98% "),
+                      Text("       Saúde da bateria externa                                                        98% "),
                     ],
                   ),
                 )),
