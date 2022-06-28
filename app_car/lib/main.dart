@@ -1,7 +1,9 @@
 
+import 'package:app_car/ui/home_page.dart';
 import 'package:app_car/ui/login_page.dart';
 import 'package:app_car/ui/register_page.dart';
 import 'package:app_car/ui/template_color.dart';
+import 'package:app_car/ui/teste.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: RegisterPage(),
+      home: HomePage(),
     );
   }
 }

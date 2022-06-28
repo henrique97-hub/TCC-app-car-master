@@ -2,6 +2,7 @@
 
 // ignore_for_file: file_names
 
+import 'package:app_car/ui/teste_widget.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatefulWidget{
@@ -12,6 +13,7 @@ class BottomNavigation extends StatefulWidget{
 }
 
 class _BottomNavigationState extends State<BottomNavigation>{
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
@@ -34,11 +36,13 @@ class _BottomNavigationState extends State<BottomNavigation>{
             icon: Icon(Icons.home),
             label: 'Home',
             backgroundColor: Colors.transparent,
+            
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.map),
               label: 'Localização',
-              backgroundColor: Colors.transparent),
+              backgroundColor: Colors.transparent
+              ),
           BottomNavigationBarItem(
               icon: Icon(Icons.person),
               label: 'Usuário',
@@ -47,4 +51,5 @@ class _BottomNavigationState extends State<BottomNavigation>{
 
     );
   }
+
 }
