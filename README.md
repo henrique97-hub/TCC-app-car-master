@@ -3,7 +3,7 @@
 Projeto para a disciplina ecm963-aplicativos-hibridos 
 
 ## Integrantes
--Caio Cruz Alfonso - RA: 15.01580-7
+-Caio Cruz Alfonso Garcia - RA: 15.01580-7
 
 -Henrique Silva Godoy - RA: 16.01147-3
 
