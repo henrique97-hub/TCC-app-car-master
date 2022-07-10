@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "721066039365",
+    "project_id": "my-cool-app-car",
+    "storage_bucket": "my-cool-app-car.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721066039365:android:88862e9b05e4c32d2a6b2c",
+        "android_client_info": {
+          "package_name": "com.app_car.imt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721066039365-4ctg51a17lrnp2d9dsloc4br45ettbs2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWQod9FkLuaxcNGgnWuKVbAGzVMilOXpM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721066039365-4ctg51a17lrnp2d9dsloc4br45ettbs2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.example.app_car
+package com.app_car.imt
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.plugins.GeneratedPluginRegistrant

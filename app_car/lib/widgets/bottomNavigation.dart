@@ -1,7 +1,4 @@
 
-
-// ignore_for_file: file_names
-
 import 'package:app_car/ui/teste_widget.dart';
 import 'package:flutter/material.dart';
 

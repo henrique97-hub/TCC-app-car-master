@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app_car">
+    package="com.app_car.imt">
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
    <application
         android:label="app_car"
