@@ -5,6 +5,7 @@ import 'package:app_car/widgets/bottomNavigation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_car/auth_service.dart';
+import 'package:app_car/ui/home_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _userController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -52,23 +54,29 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextField(
-                  onChanged: (text) {
-                    print(text);
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Usuário',
-                    prefixIcon: Icon(Icons.person),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: TextField(
+                    controller: _userController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                    hintText: 'Usuário',
+                    ),
                   ),
                 ),
-              SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
-              child: TextField(
-                controller: _emailController,
-                decoration: const InputDecoration(hintText: 'Email'),
+              const SizedBox(height: 20),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: TextField(
+                    controller: _emailController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                    hintText: 'email',
+                    ),
                   ),
-              ),
-                const SizedBox(height: 10),
+                ),
+                const SizedBox(height: 20),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
                   child: TextField(
@@ -79,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 const TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -89,21 +97,30 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 50),
                 ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Cadastrar'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blueGrey[900],
-                    shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5)))
-                  )
-
-                ),
-                const SizedBox(height: 50),
-                ElevatedButton(
                   onPressed: () async{
                     final message = await AuthService().registration(
                       email: _emailController.text,
                       password: _passwordController.text,
                     );
+                    if (message!.contains('Success')){
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(message),
+                  ),
+                 );
+                },
+                  child: const Text('Criar Conta'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey[900],
+                    shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5)))
+                  )
+                ),
+                const SizedBox(height: 50),
+                ElevatedButton(
+                  onPressed: () {
                     Navigator.of(context).pushReplacement(
                         MaterialPageRoute(builder: (context) => LoginPage())
                     );

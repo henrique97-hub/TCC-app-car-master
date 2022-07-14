@@ -6,6 +6,8 @@ import 'package:app_car/ui/teste_widget.dart';
 import 'package:app_car/widgets/bottomNavigation.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:app_car/auth_service.dart';
+import 'package:app_car/ui/home_page.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -17,8 +19,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String usuario = '';
-  String senha = '';
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
         final ThemeData tema = ThemeData(
@@ -51,25 +53,25 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   height: 50,
                 ),
-                SizedBox(height: 10),
-                TextField(
-                  onChanged: (text) {
-                    usuario = text;
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Usuário',
-                    prefixIcon: Icon(Icons.person)
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: TextField(
+                    controller: _emailController,
+                    obscureText: true,
+                    decoration: const InputDecoration(
+                    hintText: 'Email',
+                    ),
                   ),
                 ),
-                SizedBox(height: 10),
-                TextField(
-                  onChanged: (text) {
-                    senha = text;
-                  },
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Senha',
-                    prefixIcon: Icon(Icons.lock),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                    child: TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                      hintText: 'Password',
+                    ),
                   ),
                 ),
                   Container(
@@ -87,24 +89,26 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 30),
                 ElevatedButton(
-                  
                   onPressed: () async {
-                    // if (usuario == 'henrique' && senha == '123'){
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => HomePage())
-                      );
-                    // }
-                    // else {
-                    //   print('Senha invalida!');
-                    // }
-                  },
-                   child: Text('Acessar'),
-                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blueGrey[900],
-                    shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5)))
-                    
-                  )
-                ),
+                    final message = await AuthService().login(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                  if (message!.contains('Success')) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  }
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(message),
+                    ),
+                  );
+              },
+              child: const Text('Login'),
+            ),
                 ],
             ),
           ),

@@ -29,6 +29,13 @@
             {
               "client_id": "721066039365-4ctg51a17lrnp2d9dsloc4br45ettbs2.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "721066039365-vhmtuarmk1ike2lsmv7jbk7pkg4lh3dn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.appCar"
+              }
             }
           ]
         }
