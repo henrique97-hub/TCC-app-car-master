@@ -6,7 +6,7 @@ import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/material.dart';
 
 class GpsAcesso extends StatefulWidget {
-  const GpsAcesso({ Key? key }) : super(key: key);
+  const GpsAcesso({Key? key}) : super(key: key);
 
   @override
   State<GpsAcesso> createState() => _GpsAcessoState();
@@ -15,7 +15,11 @@ class GpsAcesso extends StatefulWidget {
 class _GpsAcessoState extends State<GpsAcesso> {
   @override
   Widget build(BuildContext context) {
-        final ThemeData tema = ThemeData(brightness: Brightness.dark);
+    // https://pub.dev/packages/date_format/example
+    // final today = DateTime.now();
+    // var formatter = new DateFormat()
+    
+    final ThemeData tema = ThemeData(brightness: Brightness.dark);
     return Scaffold(
       backgroundColor: tema.backgroundColor,
       appBar: AppBar(
@@ -49,7 +53,7 @@ class _GpsAcessoState extends State<GpsAcesso> {
           Container(
             alignment: Alignment.bottomLeft,
             child: Text(
-              "Atualizado em 25/06/2022 ás 16:55",
+              "Atualizado em 29/08/2022 ás 11:05 ",
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -57,24 +61,24 @@ class _GpsAcessoState extends State<GpsAcesso> {
           Card(
             color: Colors.grey[800],
             child: Row(
-              children:[
+              children: [
                 Expanded(
-                child: Row(
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.battery_charging_full_rounded,
-                        color: Colors.white,
+                  child: Row(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.battery_charging_full_rounded,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    Text("Saúde da bateria externa 98% ",
-                        style: TextStyle(color: Colors.white)),
-                  ],
+                      Text("Saúde da bateria externa 98% ",
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
                 ),
-              ),
-              ], 
+              ],
             ),
           ),
           Card(
@@ -84,11 +88,10 @@ class _GpsAcessoState extends State<GpsAcesso> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 BotaoAlerta(
-                  Icon(Icons.campaign, color: Colors.white),
-                ),
-                BotaoAlerta(Icon(Icons.phone, color: Colors.white)),
-                BotaoAlerta(Icon(Icons.album, color: Colors.white)),
-                BotaoAlerta(Icon(Icons.map, color: Colors.white)),
+                    Icon(Icons.campaign, color: Colors.white), 'campainha'),
+                BotaoAlerta(Icon(Icons.phone, color: Colors.white), 'telefone'),
+                BotaoAlerta(Icon(Icons.album, color: Colors.white), 'gravação'),
+                BotaoAlerta(Icon(Icons.map, color: Colors.white), 'GPS'),
               ],
             ),
           ),

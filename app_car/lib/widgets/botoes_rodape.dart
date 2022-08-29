@@ -34,16 +34,16 @@ class BotaoRodapeState extends State<BotaoRodape> {
       body: _telas[indiceAtual], // alterando posição da lista
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0X7A7A7A),
+        backgroundColor: Colors.black26,
         selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
         currentIndex: indiceAtual,
         onTap: onTabTapped, // Chamando o método ao clicar em uma das opções
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.help),
               label: 'Ajuda',
-              backgroundColor: Colors.grey),
+              backgroundColor: Colors.transparent),
           BottomNavigationBarItem(
               icon: Icon(Icons.shield),
               label: 'Termos',

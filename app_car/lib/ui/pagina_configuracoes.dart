@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: SizedBox(
-                  height: 100,
+                  height: 200,
                     child: const Image(
                       image: AssetImage('images/carApp.png'),
                     ),
@@ -108,16 +108,16 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 BotaoAlerta(
-                  Icon(Icons.campaign, color: Colors.white),
+                  Icon(Icons.campaign, color: Colors.white),'campainha'
                 ),
                 BotaoAlerta(
-                  Icon(Icons.phone, color: Colors.white),
+                  Icon(Icons.phone, color: Colors.white), 'telefone'
                 ),
                 BotaoAlerta(
-                  Icon(Icons.album, color: Colors.white),
+                  Icon(Icons.album, color: Colors.white), 'gravação'
                 ),
                 BotaoAlerta(
-                  Icon(Icons.map, color: Colors.white),
+                  Icon(Icons.map, color: Colors.white), 'GPS'
                 ),
               ],
             ),
