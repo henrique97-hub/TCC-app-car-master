@@ -46,6 +46,7 @@ class _InternalCamerasState extends State<InternalCameras> {
           Container(
             margin: const EdgeInsets.only(top: 5),
             child: SizedBox(
+              height: 200,
               child: Image.asset('assets/images/internal_camera.png'),
             ),
           ),
@@ -88,11 +89,11 @@ class _InternalCamerasState extends State<InternalCameras> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 BotaoAlerta(
-                  Icon(Icons.campaign, color: Colors.white),
+                  Icon(Icons.campaign, color: Colors.white),'campainha'
                 ),
-                BotaoAlerta(Icon(Icons.phone, color: Colors.white)),
-                BotaoAlerta(Icon(Icons.album, color: Colors.white)),
-                BotaoAlerta(Icon(Icons.map, color: Colors.white)),
+                BotaoAlerta(Icon(Icons.phone, color: Colors.white),'telefone'),
+                BotaoAlerta(Icon(Icons.album, color: Colors.white),'gravação'),
+                BotaoAlerta(Icon(Icons.map, color: Colors.white),'GPS'),
               ],
             ),
           ),

@@ -5,15 +5,16 @@ import 'package:flutter/material.dart';
 
 class BotaoAlerta extends StatelessWidget {
   final Icon icone;
+  final String sensor;
 
-  const BotaoAlerta(this.icone);
+  const BotaoAlerta(this.icone, this.sensor);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       icon: icone,
       onPressed: () {
-        abrirDialogInfo(context);
+        abrirDialogInfo(context,sensor);
       },
     );
   }
