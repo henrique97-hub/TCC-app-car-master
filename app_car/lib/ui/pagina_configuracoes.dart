@@ -60,10 +60,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 child: SizedBox(
-                  child: const Image(
-                    image: AssetImage('images/carApp.png'),
-                  ),
-                ),
+                  height: 100,
+                    child: const Image(
+                      image: AssetImage('images/carApp.png'),
+                    ),
+                    ),
               ),
             ],
           ),
@@ -78,23 +79,27 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           Card(
             color: Colors.grey[800],
-            child: Expanded(
-              child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.battery_charging_full_rounded,
-                      color: Colors.white,
-                    ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.battery_charging_full_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        "Saúde da bateria externa 98% ",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "Saúde da bateria externa 98% ",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Card(
