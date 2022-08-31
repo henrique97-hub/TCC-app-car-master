@@ -20,7 +20,6 @@ abrirDialogInfo(BuildContext context, String sensor) {
               textColor: Color(0xFF6200EE),
               onPressed: () {
                 Navigator.of(context).pop();
-                print("Alarme ativado!");
               },
               child: Text('ATIVAR'),
             ),
