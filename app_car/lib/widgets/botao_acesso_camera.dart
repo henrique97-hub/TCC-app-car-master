@@ -12,7 +12,6 @@ class BotaoCamera extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      
       height: 120,
       width: 140,
       child: ElevatedButton(

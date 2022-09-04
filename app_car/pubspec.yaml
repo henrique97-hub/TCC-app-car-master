@@ -38,7 +38,7 @@ dependencies:
   flutter_svg: ^1.0.3
   local_auth: ^1.1.11
   mqtt_client: ^9.6.8
-
+  flutter_mjpeg :
 dev_dependencies:
   flutter_test:
     sdk: flutter

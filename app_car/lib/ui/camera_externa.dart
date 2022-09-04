@@ -49,6 +49,7 @@ class _ExternalCamerasState extends State<ExternalCameras> {
               children: const [
                 SizedBox(
                   child: Image(
+                    height: 200,
                     image: AssetImage('images/camera_externa.png'),
                   ),
                 ),
@@ -66,21 +67,25 @@ class _ExternalCamerasState extends State<ExternalCameras> {
           SizedBox(height: 60),
           Card(
             color: Colors.grey[800],
-            child: Expanded(
-              child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(
-                      Icons.battery_charging_full_rounded,
-                      color: Colors.white,
+            child: Row(
+              children:[
+                Expanded(
+                child: Row(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(
+                        Icons.battery_charging_full_rounded,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  Text("Saúde da bateria externa 98% ",
-                      style: TextStyle(color: Colors.white)),
-                ],
+                    Text("Saúde da bateria externa 98% ",
+                        style: TextStyle(color: Colors.white)),
+                  ],
+                ),
               ),
+              ], 
             ),
           ),
           Card(
@@ -90,11 +95,11 @@ class _ExternalCamerasState extends State<ExternalCameras> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 BotaoAlerta(
-                  Icon(Icons.campaign, color: Colors.white),
+                  Icon(Icons.campaign, color: Colors.white),'campainha'
                 ),
-                BotaoAlerta(Icon(Icons.phone, color: Colors.white)),
-                BotaoAlerta(Icon(Icons.album, color: Colors.white)),
-                BotaoAlerta(Icon(Icons.map, color: Colors.white)),
+                BotaoAlerta(Icon(Icons.phone, color: Colors.white),'telefone'),
+                BotaoAlerta(Icon(Icons.album, color: Colors.white),'gravação'),
+                BotaoAlerta(Icon(Icons.map, color: Colors.white),'GPS'),
               ],
             ),
           ),

@@ -1,6 +1,6 @@
-
 import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/pagina_cadastro.dart';
+import 'package:app_car/videocamp.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/material.dart';
 
@@ -18,4 +18,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

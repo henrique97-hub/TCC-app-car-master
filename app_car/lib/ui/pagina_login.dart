@@ -55,6 +55,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: const Text(
                         'Esqueci a minha senha', 
                         textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: Colors.grey,
+                          decoration: TextDecoration.underline
+                        ),
                       ),
                     ),
                     ], 
