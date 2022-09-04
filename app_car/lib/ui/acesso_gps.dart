@@ -4,6 +4,8 @@ import 'package:app_car/widgets/botao_acesso_camera.dart';
 import 'package:app_car/widgets/botao_alerta_sensores.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/material.dart';
+import 'package:mqtt_client/mqtt_client.dart';
+
 
 class GpsAcesso extends StatefulWidget {
   const GpsAcesso({ Key? key }) : super(key: key);
