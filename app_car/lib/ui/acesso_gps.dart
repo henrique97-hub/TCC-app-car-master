@@ -16,9 +16,9 @@ class _GpsAcessoState extends State<GpsAcesso> {
   @override
   Widget build(BuildContext context) {
     // https://pub.dev/packages/date_format/example
-    // final today = DateTime.now();
+    final today = DateTime.now().day;
     // var formatter = new DateFormat()
-    
+
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
     return Scaffold(
       backgroundColor: tema.backgroundColor,
@@ -53,7 +53,7 @@ class _GpsAcessoState extends State<GpsAcesso> {
           Container(
             alignment: Alignment.bottomLeft,
             child: Text(
-              "Atualizado em 29/08/2022 ás 11:05 ",
+              "Atualizado em ${today} ",
               style: TextStyle(color: Colors.white),
             ),
           ),

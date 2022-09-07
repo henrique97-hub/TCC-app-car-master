@@ -14,7 +14,7 @@ class BotaoAlerta extends StatelessWidget {
     return IconButton(
       icon: icone,
       onPressed: () {
-        abrirDialogInfo(context,sensor);
+        abrirDialogInfo(context, sensor);
       },
     );
   }
