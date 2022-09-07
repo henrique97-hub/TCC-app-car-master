@@ -39,7 +39,13 @@ dependencies:
   local_auth: ^1.1.11
   mqtt_client: ^9.6.8
   flutter_mjpeg :
+<<<<<<< Updated upstream
   date_format: ^2.0.6
+=======
+  firebase_core: ^1.21.1
+  firebase_core_web: ^1.7.2
+  firebase_auth: ^3.4.2
+>>>>>>> Stashed changes
 dev_dependencies:
   flutter_test:
     sdk: flutter
