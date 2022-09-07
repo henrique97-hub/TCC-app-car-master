@@ -40,6 +40,9 @@ dependencies:
   mqtt_client: ^9.6.8
   flutter_mjpeg :
   date_format: ^2.0.6
+  firebase_core: ^1.12.0
+  firebase_auth: ^3.3.8
+  provider: ^6.0.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
