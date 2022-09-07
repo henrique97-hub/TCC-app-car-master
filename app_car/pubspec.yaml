@@ -39,6 +39,7 @@ dependencies:
   local_auth: ^1.1.11
   mqtt_client: ^9.6.8
   flutter_mjpeg :
+  date_format: ^2.0.6
 dev_dependencies:
   flutter_test:
     sdk: flutter

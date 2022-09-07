@@ -1,6 +1,5 @@
 import 'package:app_car/ui/pagina_login.dart';
 import 'package:app_car/ui/template_color.dart';
-import 'package:app_car/widgets/bottomNavigation.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
-    
+
     return Scaffold(
       backgroundColor: tema.backgroundColor,
       appBar: AppBar(
@@ -30,7 +29,6 @@ class _RegisterPageState extends State<RegisterPage> {
         child: CadastroUsuario(),
       ),
       // bottomNavigationBar: BottomNavigation(),
-
     );
   }
 }
@@ -48,10 +46,22 @@ class CadastroUsuario extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CamposCadastro('Usuário', Icon(Icons.person),),
-            CamposCadastro('Email', Icon(Icons.email),),
-            CamposCadastro('Senha', Icon(Icons.lock),),
-            CamposCadastro('Digite novamente sua Senha', Icon(Icons.lock_open),),
+            CamposCadastro(
+              'Usuário',
+              Icon(Icons.person),
+            ),
+            CamposCadastro(
+              'Email',
+              Icon(Icons.email),
+            ),
+            CamposCadastro(
+              'Senha',
+              Icon(Icons.lock),
+            ),
+            CamposCadastro(
+              'Digite novamente sua Senha',
+              Icon(Icons.lock_open),
+            ),
             const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {},
