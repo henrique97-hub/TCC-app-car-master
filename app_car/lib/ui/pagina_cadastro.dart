@@ -3,6 +3,7 @@ import 'package:app_car/ui/template_color.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:app_car/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

@@ -2,7 +2,7 @@ import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/pagina_cadastro.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/material.dart';
-import 'package:local_auth/local_auth.dart';
+// import 'package:local_auth/local_auth.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);

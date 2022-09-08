@@ -18,9 +18,9 @@ class BotaoRodapeState extends State<BotaoRodape> {
 
   final List<Widget> _telas = [
     ConfigAjuda(),
-    ExternalCameras(),
+    // ExternalCameras(),
     HomePage(),
-    GpsAcesso(),
+    // GpsAcesso(),
     LoginPage(),
   ];
 
