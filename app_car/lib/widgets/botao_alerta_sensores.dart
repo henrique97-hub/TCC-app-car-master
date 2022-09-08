@@ -10,6 +10,7 @@ import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:app_car/widgets/mqtt_json.dart';
+import 'dart:convert';
 
 class BotaoAlerta extends StatefulWidget {
   
@@ -149,6 +150,9 @@ class BotaoAlerta extends StatefulWidget {
     print("[MQTT client] message with message: ${message}");
     message = message.toLowerCase();
     print('$message antes do setState');
+    var body = json.decode(message);
+    // SensorJSON sensorfinal = SensorJSON.fromJson(body);
+    // message = sensorfinal.sensor;
     // estado= true;
     // message = 'true';
     // print('$estado este é o estado');
@@ -174,13 +178,7 @@ class BotaoAlerta extends StatefulWidget {
   
   void _publishMessage(String message) {
     final builder = MqttClientPayloadBuilder();
-    builder.addString(
-      json.encode(
-      {
-        "message": message,
-      }
-    )
-    );
+    
     client?.publishMessage(widget.topic, MqttQos.exactlyOnce, builder.payload!);
   }
 
