@@ -22,48 +22,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // @override
-  // String broker = '201.81.74.83';
-  // int port = 1883;
-  // String clientIdentifier = 'android-jp';
   String topic = 'esp32Sensor/status';
   String topic2 = 'esp32Sensor/alarme';
   String topic3 = 'esp32Sensor/S/presenca';
   String topic4 = 'esp32Sensor/S/movimento';
   String topic5 = 'esp32Sensor/S/GPS';
   String topic6 = 'esp32Sensor/comunicacao';
-  
-  // mqtt.MqttClient? client;
-  // mqtt.MqttConnectionState? connectionState;
-
-  
-  // StreamSubscription? subscription1;
-  // StreamSubscription? subscription2;
-  // StreamSubscription? subscription3;
-  // StreamSubscription? subscription4;
-  // StreamSubscription? subscription5;
-  // StreamSubscription? subscription6;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   WidgetsBinding.instance!
-  //       .addPostFrameCallback((_) => _connect());
-  // }
-
-  // void _subscribeToTopic(String topic) {
-  //   if (connectionState == mqtt.MqttConnectionState.connected) {
-  //       print('[MQTT client] Subscribing to ${topic.trim()}');
-  //       client?.subscribe(topic, mqtt.MqttQos.exactlyOnce);
-  //   }
-  // }
-  
-  // bool _pres = false;
-  // bool _buzz = false;
-  // bool _mov = false;
-  // bool _conect = false;
-  // String _GPS =''; 
-
-
 
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
@@ -127,7 +91,6 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   child: Row(
-                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -152,7 +115,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 BotaoAlerta(
-                  Icon(Icons.campaign),'campainha', topic6
+                  Icon(Icons.campaign),'campainha', topic2
                 ),
                 BotaoAlerta(
                   Icon(Icons.phone), 'telefone', topic3
@@ -204,177 +167,5 @@ class _HomePageState extends State<HomePage> {
       // bottomNavigationBar: BottomNavigation(),
     );
   }
-  
-  // int _counter = 0;
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //     _publishMessage(
-  //         topic6, "Essa mensagem está sendo enviada do aplicativo flutter para o tópico comunicacao");
-  //   });
-  // }
 
-  //  void _connect() async {
-  //   client = MqttServerClient(broker, '');
-  //   client?.port = port;
-  //   client?.keepAlivePeriod = 30;
-  //   client?.onDisconnected = _onDisconnected;
-
-  //   final mqtt.MqttConnectMessage connMess = mqtt.MqttConnectMessage()
-  //       .withClientIdentifier(clientIdentifier)
-  //       .startClean() // Non persistent session for testing
-  //       .keepAliveFor(30)
-  //       .withWillQos(mqtt.MqttQos.atMostOnce);
-  //   print('[MQTT client] MQTT client connecting....');
-  //   client?.connectionMessage = connMess;
-
-  //   try {
-  //     await client?.connect();
-  //   } catch (e) {
-  //     print(e);
-  //     _disconnect();
-  //   }
-
-  //   /// Check if we are connected
-  //   if (client?.connectionState == mqtt.MqttConnectionState.connected) {
-  //     print('[MQTT client] connected');
-  //     setState(() {
-  //       connectionState = client?.connectionState;
-  //     });
-  //   } else {
-  //     print('[MQTT client] ERROR: MQTT client connection failed - '
-  //         'disconnecting, state is ${client?.connectionState}');
-  //     _disconnect();
-  //   }
-
-  //   subscription1 = client?.updates?.listen(_onMessageConect);
-  //   _subscribeToTopic(topic);
-  //   subscription2 = client?.updates?.listen(_onMessagePres);
-  //   _subscribeToTopic(topic2);
-  //   subscription3 = client?.updates?.listen(_onMessageBuzz);
-  //   _subscribeToTopic(topic3);
-  //   subscription4 = client?.updates?.listen(_onMessageMov);
-  //   _subscribeToTopic(topic4);
-  //   subscription5 = client?.updates?.listen(_onMessageGPS);
-  //   _subscribeToTopic(topic5);
-  //   subscription6= client?.updates?.listen(_onMessageGPS);
-  //   _subscribeToTopic(topic6);
-  // }
-
-  // /*
-  // Desconecta do servidor MQTT
-  //  */
-  // void _disconnect() {
-  //   print('[MQTT client] _disconnect()');
-  //   client?.disconnect();
-  //   _onDisconnected();
-  // }
-
-  // /*
-  // Executa algo quando desconectado, no caso, zera as variáveis e imprime msg no console
-  //  */
-  // void _onDisconnected() {
-  //   print('[MQTT client] _onDisconnected');
-  //   setState(() {
-  //     connectionState = client?.connectionState;
-  //     client = MqttServerClient('0', '');;
-  //     subscription1?.cancel();
-  //     subscription1 = null;
-  //   });
-  //   print('[MQTT client] MQTT client disconnected');
-  // }
-
-  // void _onMessageConect(List<mqtt.MqttReceivedMessage> event) {
-  //   print(event.length);
-  //   final mqtt.MqttPublishMessage recMess =
-  //   event[0].payload as mqtt.MqttPublishMessage;
-  //   final String message =
-  //   mqtt.MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-  //   print('[MQTT client] MQTT message: topic is <${event[0].topic}>, ''payload is <-- ${message} -->');
-  //   print(client?.connectionState);
-  //   print("[MQTT client] message with topic: ${event[0].topic}");
-  //   print("[MQTT client] message with message: ${message}");
-  //   setState(() {
-  //     _conect = bool.fromEnvironment(message);
-  //   });
-  // }
-  // void _onMessagePres(List<mqtt.MqttReceivedMessage> event) {
-  //   print(event.length);
-  //   final mqtt.MqttPublishMessage recMess =
-  //   event[0].payload as mqtt.MqttPublishMessage;
-  //   final String message =
-  //   mqtt.MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-  //   print('[MQTT client] MQTT message: topic is <${event[0].topic}>, ''payload is <-- ${message} -->');
-  //   print(client?.connectionState);
-  //   print("[MQTT client] message with topic: ${event[0].topic}");
-  //   print("[MQTT client] message with message: ${message}");
-  //   setState(() {
-  //     _pres = bool.fromEnvironment(message);
-  //   });
-  // }
-  // void _onMessageBuzz(List<mqtt.MqttReceivedMessage> event) {
-  //   print(event.length);
-  //   final mqtt.MqttPublishMessage recMess =
-  //   event[0].payload as mqtt.MqttPublishMessage;
-  //   final String message =
-  //   mqtt.MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-  //   print('[MQTT client] MQTT message: topic is <${event[0].topic}>, ''payload is <-- ${message} -->');
-  //   print(client?.connectionState);
-  //   print("[MQTT client] message with topic: ${event[0].topic}");
-  //   print("[MQTT client] message with message: ${message}");
-  //   setState(() {
-  //     _buzz = bool.fromEnvironment(message);
-  //   });
-  // }
-
-  // void _publishMessage(String topic, String message) {
-  //   final builder = MqttClientPayloadBuilder();
-  //   builder.addString(message);
-  //   client?.publishMessage(topic, MqttQos.exactlyOnce, builder.payload!);
-  // }
-
-  // void _onMessageMov(List<mqtt.MqttReceivedMessage> event) {
-  //   print(event.length);
-  //   final mqtt.MqttPublishMessage recMess =
-  //   event[0].payload as mqtt.MqttPublishMessage;
-  //   final String message =
-  //   mqtt.MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-  //   print('[MQTT client] MQTT message: topic is <${event[0].topic}>, ''payload is <-- ${message} -->');
-  //   print(client?.connectionState);
-  //   print("[MQTT client] message with topic: ${event[0].topic}");
-  //   print("[MQTT client] message with message: ${message}");
-  //   setState(() {
-  //     _mov = bool.fromEnvironment(message);
-  //   });
-  // }
-  // void _onMessageGPS(List<mqtt.MqttReceivedMessage> event) {
-  //   print(event.length);
-  //   final mqtt.MqttPublishMessage recMess =
-  //   event[0].payload as mqtt.MqttPublishMessage;
-  //   final String message =
-  //   mqtt.MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-  //   print('[MQTT client] MQTT message: topic is <${event[0].topic}>, ''payload is <-- ${message} -->');
-  //   print(client?.connectionState);
-  //   print("[MQTT client] message with topic: ${event[0].topic}");
-  //   print("[MQTT client] message with message: ${message}");
-  //   setState(() {
-  //     _GPS = String.fromEnvironment(message);
-  //   });
-    
-  //   void _onMessageComu(List<mqtt.MqttReceivedMessage> event) {
-  //   print(event.length);
-  //   final mqtt.MqttPublishMessage recMess =
-  //   event[0].payload as mqtt.MqttPublishMessage;
-  //   final String message =
-  //   mqtt.MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-  //   print('[MQTT client] MQTT message: topic is <${event[0].topic}>, ''payload is <-- ${message} -->');
-  //   print(client?.connectionState);
-  //   print("[MQTT client] message with topic: ${event[0].topic}");
-  //   print("[MQTT client] message with message: ${message}");
-  //   setState(() {
-  //     _GPS = String.fromEnvironment(message);
-  //   });
-  // }
-
-  // }
 }

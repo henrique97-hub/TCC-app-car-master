@@ -40,21 +40,24 @@ class _LoginPageState extends State<LoginPage> {
                   image: AssetImage('assets/images/login_image.png'),
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: (MediaQuery.of(context).size.width)*0.80,
                     child: TextField(
                       controller: _emailController,
-                      decoration: const InputDecoration(hintText: 'Email'),
+                      decoration: const InputDecoration(
+                        hintText: 'Email',
+                        prefixIcon: Icon(Icons.mail)),
                     ),
                   ),
                 const SizedBox(
                   height: 30.0,
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: MediaQuery.of(context).size.width*0.8,
                     child: TextField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: const InputDecoration(hintText: 'Senha'),
+                    decoration: const InputDecoration(hintText: 'Senha',
+                    prefixIcon: Icon(Icons.lock)),
                    ),
                 ),
                 Row(

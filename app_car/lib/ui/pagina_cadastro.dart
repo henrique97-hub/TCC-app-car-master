@@ -57,19 +57,20 @@ class CadastroUsuario extends StatelessWidget {
               Icon(Icons.person),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 controller: _emailController,
-                decoration: const InputDecoration(hintText: 'Email'),
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.mail)),
               ),
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
                   hintText: 'Password',
+                  prefixIcon: Icon(Icons.lock)
                 ),
               ),
             ),
@@ -94,7 +95,7 @@ class CadastroUsuario extends StatelessWidget {
                   ),
                 );
               },
-              child: const Text('Create Account'),
+              child: const Text('Criar Conta'),
             ),
             const SizedBox(height: 50),
             ElevatedButton(

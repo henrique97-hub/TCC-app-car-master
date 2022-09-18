@@ -1,15 +1,15 @@
-// import 'package:json_annotation/json_annotation.dart';
+class SensorJson {
+  bool? sensor;
 
-// part 'mqtt_json.g.dart';
+  SensorJson({this.sensor});
 
+  SensorJson.fromJson(Map<String, dynamic> json) {
+    sensor = json['sensor'];
+  }
 
-// @JsonSerializable()
-// class SensorJSON {
-//   SensorJSON({required this.sensor});
-
-//   String sensor;
-
-//   factory SensorJSON.fromJson(Map<String, dynamic> json) => _$SensorJSONFromJson(json);
-
-//   Map<String, dynamic>toJson()=> _$SensorJSONToJson(this);
-// }
+  Map<String, dynamic> toJson(String message) {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['sensor'] = this.sensor;
+    return data;
+  }
+}
