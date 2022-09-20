@@ -88,7 +88,7 @@ class _GpsAcessoState extends State<GpsAcesso> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 BotaoAlerta(
-                    Icon(Icons.campaign, color: Colors.white), 'campainha'),
+                    Icon(Icons.campaign, color: Colors.white), 'alarme'),
                 BotaoAlerta(Icon(Icons.phone, color: Colors.white), 'telefone'),
                 BotaoAlerta(Icon(Icons.album, color: Colors.white), 'gravação'),
                 BotaoAlerta(Icon(Icons.map, color: Colors.white), 'GPS'),

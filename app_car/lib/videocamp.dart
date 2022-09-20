@@ -34,7 +34,7 @@ class _VideoCamState extends State<VideoCam> {
                   return Text(error.toString(),
                       style: TextStyle(color: Colors.red));
                 },
-                stream: 'http://192.168.14.84:81/stream',
+                stream: 'http://192.168.102.84:81/stream',
                 // stream: 'http://192.168.0.112:81/stream',
                 timeout: const Duration(seconds: 60),
               ),

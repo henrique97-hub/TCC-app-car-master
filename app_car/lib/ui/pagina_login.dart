@@ -39,8 +39,8 @@ class _LoginPageState extends State<LoginPage> {
                 Image(
                   image: AssetImage('assets/images/login_image.png'),
                 ),
-                AutenticaUsuario('Usuário', Icon(Icons.person)),
-                AutenticaUsuario('Senha', Icon(Icons.lock)),
+                AutenticaUsuario('Usuário', Icon(Icons.person), false),
+                AutenticaUsuario('Senha', Icon(Icons.lock), true),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -92,12 +92,14 @@ class _LoginPageState extends State<LoginPage> {
 class AutenticaUsuario extends StatelessWidget {
   final String _label;
   final Icon _icone;
+  final bool _esconde;
 
-  AutenticaUsuario(this._label, this._icone);
+  AutenticaUsuario(this._label, this._icone, this._esconde);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText: _esconde,
       decoration: InputDecoration(
         labelText: _label,
         prefixIcon: _icone,
