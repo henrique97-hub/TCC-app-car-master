@@ -65,17 +65,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: 5),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: SizedBox(
-          //         child: const Image(
-          //           image: AssetImage('images/carApp.png'),
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  child: const Image(
+                    image: AssetImage('images/carApp.png'),
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(height: 5),
           SizedBox(height: 20),
           Card(
@@ -126,49 +126,23 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // children: [
-            //   BotaoCamera(
-            //     'Acompanhe o que acontece dentro do seu veículo',
-            //     'Câmeras internas',
-            //     Icon(Icons.camera_alt),
-            //     InternalCameras(),
-            //   ),
-            //   BotaoCamera(
-            //       'Acompanhe o que acontece fora do seu veículo',
-            //       'Câmeras externas',
-            //       Icon(Icons.camera_outdoor),
-            //       ExternalCameras())
-            // ],
+            children: [
+              BotaoCamera(
+                'Acompanhe o que acontece dentro do seu veículo',
+                'Câmeras internas',
+                Icon(Icons.camera_alt),
+                InternalCameras(),
+              ),
+              BotaoCamera(
+                  'Acompanhe o que acontece fora do seu veículo',
+                  'Câmeras externas',
+                  Icon(Icons.camera_outdoor),
+                  ExternalCameras())
+            ],
           ),
         ],
       ),
-      // floatingActionButton: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     FloatingActionButton(
-      //       onPressed: _connect,
-      //       tooltip: 'Play',
-      //       child: Icon(Icons.play_arrow),
-      //       ),
-      //     FloatingActionButton(
-      //       onPressed: _incrementCounter,
-      //       tooltip: 'Play',
-      //       child: Icon(Icons.play_arrow),
-      //     )
-
-      //   ],
-      // ),
-      // bottomNavigationBar: BottomNavigation(),
     );
   }
-  
-  // int _counter = 0;
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //     _publishMessage(
-  //         topic6, "Essa mensagem está sendo enviada do aplicativo flutter para o tópico comunicacao");
-  //   });
-  // }
 
 }

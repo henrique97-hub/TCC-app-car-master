@@ -21,7 +21,7 @@ class BotaoRodapeState extends State<BotaoRodape> {
     ConfigAjuda(),
     TermosUsuario(),
     HomePage(),
-    // GpsAcesso(),
+    GpsAcesso(),
     LoginPage(),
   ];
 

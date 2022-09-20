@@ -41,6 +41,7 @@ dependencies:
   firebase_core: ^1.21.1
   json_annotation: ^4.4.0
   firebase_auth: ^3.4.2
+  flutter_mjpeg: ^2.0.1
 
 dev_dependencies:
   flutter_test:
