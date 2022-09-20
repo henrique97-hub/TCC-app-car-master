@@ -77,13 +77,6 @@ class _HomePageState extends State<HomePage> {
           //   ],
           // ),
           SizedBox(height: 5),
-          Container(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              "Atualizado em 25/06/2022 ás 16:55",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
           SizedBox(height: 20),
           Card(
             color: Colors.grey[800],
@@ -95,12 +88,12 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
-                          Icons.battery_charging_full_rounded,
+                          Icons.update,
                           color: Colors.white,
                         ),
                       ),
                       Text(
-                        "Saúde da bateria externa 98% ",
+                        "Atualizado em 25/06/2022 ás 16:55",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -126,6 +119,7 @@ class _HomePageState extends State<HomePage> {
                 BotaoAlerta(
                   Icon(Icons.map), 'GPS', topic5
                 ),
+
               ],
             ),
           ),

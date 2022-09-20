@@ -114,12 +114,14 @@ class _LoginPageState extends State<LoginPage> {
 class AutenticaUsuario extends StatelessWidget {
   final String _label;
   final Icon _icone;
+  final bool _esconde;
 
-  AutenticaUsuario(this._label, this._icone);
+  AutenticaUsuario(this._label, this._icone, this._esconde);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      obscureText: _esconde,
       decoration: InputDecoration(
         labelText: _label,
         prefixIcon: _icone,

@@ -24,6 +24,7 @@
 //     var isRunning = true;
 //     final ThemeData tema = ThemeData(brightness: Brightness.dark);
 
+
 //     return Scaffold(
 //       backgroundColor: tema.backgroundColor,
 //       appBar: AppBar(
@@ -130,3 +131,102 @@
 //     );
 //   }
 // }
+    return Scaffold(
+      backgroundColor: tema.backgroundColor,
+      appBar: AppBar(
+        title: Center(
+          child: Text("Câmeras Externas"),
+        ),
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.keyboard_return_rounded),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => BotaoRodape(),
+              ),
+            );
+          },
+        ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 5),
+            child: Mjpeg(
+              isLive: isRunning,
+              error: (context, error, stack) {
+                print(error);
+                print(stack);
+                return Text(error.toString(),
+                    style: TextStyle(color: Colors.red));
+              },
+              stream: 'http://192.168.164.84:81/stream',
+              // stream: 'http://192.168.0.112:81/stream',
+              timeout: const Duration(seconds: 60),
+            ),
+          ),
+          SizedBox(height: 15),
+          SizedBox(height: 60),
+          Card(
+            color: Colors.grey[800],
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.update,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text("Atualizado em 25/06/2022 ás 16:55",
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            color: Colors.grey[600],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                BotaoAlerta(
+                    Icon(Icons.campaign, color: Colors.white), 'alarme'),
+                BotaoAlerta(Icon(Icons.phone, color: Colors.white), 'telefone'),
+                BotaoAlerta(Icon(Icons.album, color: Colors.white), 'gravação'),
+                BotaoAlerta(Icon(Icons.map, color: Colors.white), 'GPS'),
+              ],
+            ),
+          ),
+          SizedBox(height: 60),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              BotaoCamera(
+                'Acompanhe o que acontece dentro do seu veículo',
+                'Câmeras internas',
+                Icon(Icons.camera_alt),
+                InternalCameras(),
+              ),
+              BotaoCamera(
+                'Acompanhe o que acontece fora do seu veículo',
+                'Câmeras externas',
+                Icon(Icons.camera_outdoor),
+                ExternalCameras(),
+              )
+            ],
+          ),
+        ],
+      ),
+      // bottomNavigationBar:  BottomNavigation(),
+    );
+  }
+}
