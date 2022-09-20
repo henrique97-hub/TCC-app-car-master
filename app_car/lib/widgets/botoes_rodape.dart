@@ -2,8 +2,10 @@
 
 import 'package:app_car/ui/acesso_gps.dart';
 import 'package:app_car/ui/camera_externa.dart';
+import 'package:app_car/ui/pagina_ajuda.dart';
 import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/camera_interna.dart';
+import 'package:app_car/ui/pagina_login.dart';
 import 'package:flutter/material.dart';
 
 class BotaoRodape extends StatefulWidget {
@@ -12,14 +14,14 @@ class BotaoRodape extends StatefulWidget {
 }
 
 class BotaoRodapeState extends State<BotaoRodape> {
-  int indiceAtual = 0; // Variável para controlar o índice das telas
+  int indiceAtual = 2; // Variável para controlar o índice das telas
 
   final List<Widget> _telas = [
+    ConfigAjuda(),
+    // ExternalCameras(),
     HomePage(),
-    ExternalCameras(),
-    HomePage(),
-    GpsAcesso(),
-    InternalCameras(),
+    // GpsAcesso(),
+    LoginPage(),
   ];
 
   void onTabTapped(int index) {
@@ -58,9 +60,10 @@ class BotaoRodapeState extends State<BotaoRodape> {
               label: 'Localização',
               backgroundColor: Colors.transparent),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Usuário',
-              backgroundColor: Colors.transparent)
+            icon: Icon(Icons.exit_to_app),
+            label: 'Sair',
+            backgroundColor: Colors.transparent,
+          )
         ],
       ),
     );
