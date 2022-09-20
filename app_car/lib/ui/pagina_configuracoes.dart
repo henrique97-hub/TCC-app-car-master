@@ -167,5 +167,14 @@ class _HomePageState extends State<HomePage> {
       // bottomNavigationBar: BottomNavigation(),
     );
   }
+  
+  // int _counter = 0;
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //     _publishMessage(
+  //         topic6, "Essa mensagem está sendo enviada do aplicativo flutter para o tópico comunicacao");
+  //   });
+  // }
 
 }
