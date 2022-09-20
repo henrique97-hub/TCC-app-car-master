@@ -2,7 +2,7 @@ import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/pagina_cadastro.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/material.dart';
-import 'package:local_auth/local_auth.dart';
+import 'package:app_car/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -12,8 +12,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String usuario = '';
-  String senha = '';
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
@@ -39,8 +39,27 @@ class _LoginPageState extends State<LoginPage> {
                 Image(
                   image: AssetImage('assets/images/login_image.png'),
                 ),
-                AutenticaUsuario('Usuário', Icon(Icons.person), false),
-                AutenticaUsuario('Senha', Icon(Icons.lock), true),
+                SizedBox(
+                  width: (MediaQuery.of(context).size.width)*0.80,
+                    child: TextField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
+                        hintText: 'Email',
+                        prefixIcon: Icon(Icons.mail)),
+                    ),
+                  ),
+                const SizedBox(
+                  height: 30.0,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width*0.8,
+                    child: TextField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: const InputDecoration(hintText: 'Senha',
+                    prefixIcon: Icon(Icons.lock)),
+                   ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -62,23 +81,26 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: () async {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => BotaoRodape(),
-                      ),
-                    );
-                  },
-                  child: Text('Acessar'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blueGrey[900],
-                    shape: const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(5),
-                      ),
+                onPressed: () async {
+                final message = await AuthService().login(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                );
+                if (message!.contains('Success')) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const HomePage(),
                     ),
+                  );
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(message),
                   ),
-                ),
+                );
+              },
+              child: const Text('Login'),
+            ),
               ],
             ),
           ),

@@ -1,8 +1,10 @@
 import 'package:app_car/ui/pagina_login.dart';
+import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/template_color.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:app_car/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
+  
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
@@ -34,8 +38,10 @@ class _RegisterPageState extends State<RegisterPage> {
 }
 
 class CadastroUsuario extends StatelessWidget {
-  const CadastroUsuario({Key? key}) : super(key: key);
-
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  CadastroUsuario({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -50,13 +56,23 @@ class CadastroUsuario extends StatelessWidget {
               'Usuário',
               Icon(Icons.person),
             ),
-            CamposCadastro(
-              'Email',
-              Icon(Icons.email),
+            SizedBox(
+              child: TextField(
+                controller: _emailController,
+                decoration: const InputDecoration(
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.mail)),
+              ),
             ),
-            CamposCadastro(
-              'Senha',
-              Icon(Icons.lock),
+            SizedBox(
+              child: TextField(
+                controller: _passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: 'Password',
+                  prefixIcon: Icon(Icons.lock)
+                ),
+              ),
             ),
             CamposCadastro(
               'Digite novamente sua Senha',
@@ -64,16 +80,22 @@ class CadastroUsuario extends StatelessWidget {
             ),
             const SizedBox(height: 50),
             ElevatedButton(
-              onPressed: () {},
-              child: const Text('Cadastrar'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blueGrey[900],
-                shape: const BeveledRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
+              onPressed: () async {
+                final message = await AuthService().registration(
+                  email: _emailController.text,
+                  password: _passwordController.text,
+                );
+                if (message!.contains('Success')) {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => const HomePage()));
+                }
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(message),
                   ),
-                ),
-              ),
+                );
+              },
+              child: const Text('Criar Conta'),
             ),
             const SizedBox(height: 50),
             ElevatedButton(
@@ -104,6 +126,7 @@ class CadastroUsuario extends StatelessWidget {
 class CamposCadastro extends StatelessWidget {
   final String label;
   final Icon icone;
+
 
   const CamposCadastro(this.label, this.icone);
 
