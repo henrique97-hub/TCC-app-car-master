@@ -53,7 +53,7 @@ class _InternalCamerasState extends State<InternalCameras> {
                 return Text(error.toString(),
                     style: TextStyle(color: Colors.red));
               },
-              stream: 'http://192.168.48.84:81/stream',
+              stream: 'http://192.168.164.84:81/stream',
               // stream: 'http://192.168.0.112:81/stream',
               timeout: const Duration(seconds: 60),
             ),
@@ -63,13 +63,6 @@ class _InternalCamerasState extends State<InternalCameras> {
             // ),
           ),
           SizedBox(height: 5),
-          Container(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              "Atualizado em 25/06/2022 ás 16:55",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
           SizedBox(height: 40),
           Card(
             color: Colors.grey[800],
@@ -82,11 +75,11 @@ class _InternalCamerasState extends State<InternalCameras> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
-                          Icons.battery_charging_full_rounded,
+                          Icons.update,
                           color: Colors.white,
                         ),
                       ),
-                      Text("Saúde da bateria externa 98% ",
+                      Text("Atualizado em 25/06/2022 ás 16:55 ",
                           style: TextStyle(color: Colors.white)),
                     ],
                   ),
@@ -101,7 +94,7 @@ class _InternalCamerasState extends State<InternalCameras> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 BotaoAlerta(
-                    Icon(Icons.campaign, color: Colors.white), 'campainha'),
+                    Icon(Icons.campaign, color: Colors.white), 'alarme'),
                 BotaoAlerta(Icon(Icons.phone, color: Colors.white), 'telefone'),
                 BotaoAlerta(Icon(Icons.album, color: Colors.white), 'gravação'),
                 BotaoAlerta(Icon(Icons.map, color: Colors.white), 'GPS'),

@@ -6,6 +6,7 @@ import 'package:app_car/ui/pagina_ajuda.dart';
 import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/camera_interna.dart';
 import 'package:app_car/ui/pagina_login.dart';
+import 'package:app_car/ui/pagina_termos.dart';
 import 'package:flutter/material.dart';
 
 class BotaoRodape extends StatefulWidget {
@@ -18,7 +19,7 @@ class BotaoRodapeState extends State<BotaoRodape> {
 
   final List<Widget> _telas = [
     ConfigAjuda(),
-    ExternalCameras(),
+    TermosUsuario(),
     HomePage(),
     GpsAcesso(),
     LoginPage(),
