@@ -4,6 +4,7 @@ import 'package:app_car/ui/template_color.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:app_car/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -15,7 +16,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
 
-  
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
@@ -40,6 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
 class CadastroUsuario extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordController2 = TextEditingController();
   CadastroUsuario({Key? key}) : super(key: key);
   
   @override
@@ -74,14 +75,21 @@ class CadastroUsuario extends StatelessWidget {
                 ),
               ),
             ),
-            CamposCadastro(
-              'Digite novamente sua Senha',
-              Icon(Icons.lock_open),
+            SizedBox(
+              child: TextField(
+                controller: _passwordController2,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: 'Digite Novamente sua senha',
+                  prefixIcon: Icon(Icons.lock)
+                ),
+              ),
             ),
             const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () async {
-                final message = await AuthService().registration(
+                if (_passwordController2.text == _passwordController.text){
+                  final message = await AuthService().registration(
                   email: _emailController.text,
                   password: _passwordController.text,
                 );
@@ -94,6 +102,22 @@ class CadastroUsuario extends StatelessWidget {
                     content: Text(message),
                   ),
                 );
+                } else {
+                  showDialog(
+                    context: context, 
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: const Text('Senhas Diferntes'),
+                        content: const Text('Senhas estão diferentes, favor preencher com o mesmo valor em ambos os campos'),
+                        actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'OK'),
+                        child: const Text('OK'),
+                      ),
+                    ], 
+                  );
+                  });
+                }
               },
               child: const Text('Criar Conta'),
             ),

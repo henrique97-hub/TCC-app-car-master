@@ -8,6 +8,8 @@ import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mjpeg/flutter_mjpeg.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:app_car/widgets/globals.dart' as globals;
 
 
 class InternalCameras extends StatefulWidget {
@@ -100,10 +102,28 @@ class _InternalCamerasState extends State<InternalCameras> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                BotaoAlerta(Icon(Icons.campaign), 'campainha', topic2),
-                BotaoAlerta(Icon(Icons.phone), 'telefone', topic3),
-                BotaoAlerta(Icon(Icons.album), 'gravação', topic4),
-                BotaoAlerta(Icon(Icons.map), 'GPS', topic5),
+                BotaoAlerta(
+                  Icon(Icons.campaign),'campainha', topic2
+                ),
+                BotaoAlerta(
+                  Icon(Icons.sensors), 'Sensor de Movimento', topic3
+                ),
+                IconButton(
+                  icon: Icon(Icons.phone), 
+                  color: Colors.white,
+                  onPressed: () {
+                  String telefone =  '190';
+                  final Uri _url = Uri.parse('tel://$telefone');
+                  launchUrl(_url);
+                  // createAlarmNotification();
+                  },
+                ),
+                BotaoAlerta(
+                  Icon(Icons.double_arrow), 'Sensor de Presença', topic4
+                ),
+                BotaoAlerta(
+                  Icon(Icons.map), 'GPS', topic5
+                ),
               ],
             ),
           ),

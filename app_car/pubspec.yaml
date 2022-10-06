@@ -42,6 +42,10 @@ dependencies:
   json_annotation: ^4.4.0
   firebase_auth: ^3.4.2
   flutter_mjpeg: ^2.0.1
+  url_launcher: ^6.1.5
+  awesome_notifications: ^0.6.21
+  font_awesome_flutter: ^10.2.1
+  flutter_launcher_icons: ^0.10.0
 
 dev_dependencies:
   flutter_test:

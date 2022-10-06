@@ -4,22 +4,27 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/widgets/modal_alarme.dart';
+import 'package:app_car/widgets/modal_sensores.dart';
 import 'package:app_car/widgets/mqtt_json.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:app_car/widgets/notifications.dart';
+import 'package:app_car/widgets/globals.dart' as globals;
 
 class BotaoAlerta extends StatefulWidget {
   
-  // @override
+  @override
   final Icon icone;
   final String sensor;
   final String topic;
   final  String broker = '201.81.74.83';
   final  int port = 1883;
   final String clientIdentifier = 'android-jp';
+  
   
   const BotaoAlerta(this.icone, this.sensor, this.topic);
 
@@ -33,12 +38,49 @@ class BotaoAlerta extends StatefulWidget {
   class _BotaoAlertaState extends State<BotaoAlerta> {
   bool estado = false;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance!
-        .addPostFrameCallback((_) => _connect());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   WidgetsBinding.instance!
+  //       .addPostFrameCallback((_) => _connect());
+  //   AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+  //     if (!isAllowed) {
+  //       showDialog(
+  //         context: context,
+  //         builder: (context) => AlertDialog(
+  //           title: const Text('Allow Notifications'),
+  //           content: const Text('Our app would like to send you notifications'),
+  //           actions: [
+  //             TextButton(
+  //               onPressed: () {
+  //                 Navigator.pop(context);
+  //               },
+  //               child: const Text(
+  //                 'Don\'t Allow',
+  //                 style: TextStyle(
+  //                   color: Colors.black,
+  //                   fontSize: 18,
+  //                 ),
+  //               ),
+  //             ),
+  //             TextButton(
+  //                 onPressed: () => AwesomeNotifications()
+  //                     .requestPermissionToSendNotifications()
+  //                     .then((_) => Navigator.pop(context)),
+  //                 child: const Text(
+  //                   'Allow',
+  //                   style: TextStyle(
+  //                     color: Colors.teal,
+  //                     fontSize: 18,
+  //                     fontWeight: FontWeight.bold,
+  //                   ),
+  //                 ))
+  //           ],
+  //         ),
+  //       );
+  //     }
+  //   });
+  // }
 
   void _subscribeToTopic(String topic) {
     if (connectionState == mqtt.MqttConnectionState.connected) {
@@ -49,28 +91,70 @@ class BotaoAlerta extends StatefulWidget {
   @override
 
   Widget build(BuildContext context) {
-    return IconButton(
+    if (widget.topic == 'esp32Sensor/alarme'){
+      return IconButton(
       icon: widget.icone,
       color: estado 
-        ? Colors.white 
-        : Colors.red, 
+        ? Colors.red 
+        : Colors.white,
       onPressed: (){
-        if (widget.topic == 'esp32Sensor/alarme'){
+        print(globals.status);
+        if(globals.status == true){
           print("O estado é $estado");
           _publishMessageJSON(estado);
-          print("O estado dps é $estado");
           setState(() {
-            estado = false;
-          });
-        }else{
-            print('$estado agora fazendo o teste no pressed' );
-            setState(() {
             estado = !estado;
           });
+          if(estado == true){
+            createAlarmNotification();
+          }
         }
-        abrirDialogInfo(context, widget.sensor);
-      },
-    );
+      });
+    }else{
+      return IconButton(
+      icon: widget.icone,
+      color: estado 
+        ? Colors.red 
+        : Colors.white,
+      onPressed: (){
+        if (widget.topic == 'esp32Sensor/S/presenca' || widget.topic == 'esp32Sensor/S/movimento') {
+          abrirSensorInfo(context, widget.sensor);
+        }else{
+          abrirDialogInfo(context, widget.sensor);
+        }
+      });
+    // return IconButton(
+    //   icon: widget.icone,
+    //   color: estado 
+    //     ? Colors.red 
+    //     : Colors.white,
+    //   onPressed: (){
+    //     print(globals.status);
+    //     if(globals.status == true){
+    //     if (widget.topic == 'esp32Sensor/alarme'){
+    //       print("O estado é $estado");
+    //       _publishMessageJSON(estado);
+    //       if(estado == true){
+    //         createAlarmNotification();
+    //       }
+    //       setState(() {
+    //         estado = !estado;
+    //       });
+    //     }else{
+    //         if (widget.topic == 'esp32Sensor/S/presenca'){
+    //           createMovimentNotification();
+    //         }else if(widget.topic =='esp32Sensor/S/movimento'){
+    //           createAcelerometerNotification();
+    //         }
+    //         setState(() {
+    //         estado = !estado;
+    //       });
+    //       }
+    //     }
+    //     abrirDialogInfo(context, widget.sensor);
+    //   },
+    // );
+    }
   }
 
   mqtt.MqttClient? client;
