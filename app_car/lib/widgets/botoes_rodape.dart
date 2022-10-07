@@ -7,6 +7,7 @@ import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/camera_interna.dart';
 import 'package:app_car/ui/pagina_login.dart';
 import 'package:app_car/ui/pagina_termos.dart';
+import 'package:app_car/ui/pagina_logout.dart';
 import 'package:flutter/material.dart';
 
 class BotaoRodape extends StatefulWidget {
@@ -21,8 +22,8 @@ class BotaoRodapeState extends State<BotaoRodape> {
     ConfigAjuda(),
     TermosUsuario(),
     HomePage(),
-    // GpsAcesso(),
-    LoginPage(),
+    GpsAcesso(),
+    MyWidget()
   ];
 
   void onTabTapped(int index) {
@@ -42,6 +43,7 @@ class BotaoRodapeState extends State<BotaoRodape> {
         unselectedItemColor: Colors.grey,
         currentIndex: indiceAtual,
         onTap: onTabTapped, // Chamando o método ao clicar em uma das opções
+        // ignore: prefer_const_literals_to_create_immutables
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.help),

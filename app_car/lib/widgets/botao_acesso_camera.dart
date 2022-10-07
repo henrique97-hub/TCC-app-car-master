@@ -7,7 +7,11 @@ class BotaoCamera extends StatelessWidget {
   final Widget navegacao;
 
   const BotaoCamera(
-      this.labelBotao, this.labelTitulo, this.icone, this.navegacao);
+    this.labelBotao,
+    this.labelTitulo,
+    this.icone,
+    this.navegacao,
+  );
 
   @override
   Widget build(BuildContext context) {

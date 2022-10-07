@@ -17,19 +17,13 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -52,11 +46,31 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyC4IXXG-AP1ITKeInr0mI579AjecSsRYB0',
+    appId: '1:721066039365:web:90bfa5c2689a9a332a6b2c',
+    messagingSenderId: '721066039365',
+    projectId: 'my-cool-app-car',
+    authDomain: 'my-cool-app-car.firebaseapp.com',
+    storageBucket: 'my-cool-app-car.appspot.com',
+    measurementId: 'G-WQ3TEFLWQF',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAWQod9FkLuaxcNGgnWuKVbAGzVMilOXpM',
     appId: '1:721066039365:android:9db13c1312c59e202a6b2c',
     messagingSenderId: '721066039365',
     projectId: 'my-cool-app-car',
     storageBucket: 'my-cool-app-car.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyCFppf7o_HtYiqCj4D6UF_jyiCrOzefctQ',
+    appId: '1:721066039365:ios:b45a15abb9609b202a6b2c',
+    messagingSenderId: '721066039365',
+    projectId: 'my-cool-app-car',
+    storageBucket: 'my-cool-app-car.appspot.com',
+    iosClientId: '721066039365-vhmtuarmk1ike2lsmv7jbk7pkg4lh3dn.apps.googleusercontent.com',
+    iosBundleId: 'com.example.appCar',
   );
 }

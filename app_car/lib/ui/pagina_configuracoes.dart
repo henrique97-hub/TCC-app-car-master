@@ -1,16 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, deprecated_member_use, avoid_print
 import 'dart:async';
+
 import 'package:app_car/ui/camera_externa.dart';
 import 'package:app_car/ui/camera_interna.dart';
-import 'package:app_car/ui/pagina_login.dart';
 import 'package:app_car/widgets/botao_acesso_camera.dart';
 import 'package:app_car/widgets/botao_alerta_sensores.dart';
-import 'package:app_car/widgets/botoes_rodape.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,9 +18,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
-  // @override
   String topic = 'esp32Sensor/status';
   String topic2 = 'esp32Sensor/alarme';
   String topic3 = 'esp32Sensor/S/presenca';
@@ -30,6 +27,9 @@ class _HomePageState extends State<HomePage> {
   String topic6 = 'esp32Sensor/comunicacao';
 
   Widget build(BuildContext context) {
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('dd/MM/yyyy - HH:mm:ss');
+    final String formatted = formatter.format(now);
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
 
     return Scaffold(
@@ -65,17 +65,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: 5),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: SizedBox(
-          //         child: const Image(
-          //           image: AssetImage('images/carApp.png'),
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  child: const Image(
+                    image: AssetImage('assets/images/carApp.png'),
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(height: 5),
           SizedBox(height: 20),
           Card(
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        "Atualizado em 25/06/2022 ás 16:55",
+                        "Atualizado em ${formatted}",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -107,68 +107,34 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BotaoAlerta(
-                  Icon(Icons.campaign),'campainha', topic2
-                ),
-                BotaoAlerta(
-                  Icon(Icons.phone), 'telefone', topic3
-                ),
-                BotaoAlerta(
-                  Icon(Icons.album), 'gravação', topic4
-                ),
-                BotaoAlerta(
-                  Icon(Icons.map), 'GPS', topic5
-                ),
-
+                BotaoAlerta(Icon(Icons.campaign), 'campainha', topic2),
+                BotaoAlerta(Icon(Icons.phone), 'telefone', topic3),
+                BotaoAlerta(Icon(Icons.album), 'gravação', topic4),
+                BotaoAlerta(Icon(Icons.map), 'GPS', topic5),
               ],
             ),
           ),
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // children: [
-            //   BotaoCamera(
-            //     'Acompanhe o que acontece dentro do seu veículo',
-            //     'Câmeras internas',
-            //     Icon(Icons.camera_alt),
-            //     InternalCameras(),
-            //   ),
-            //   BotaoCamera(
-            //       'Acompanhe o que acontece fora do seu veículo',
-            //       'Câmeras externas',
-            //       Icon(Icons.camera_outdoor),
-            //       ExternalCameras())
-            // ],
+            children: [
+              BotaoCamera(
+                'Acompanhe o que acontece dentro do seu veículo',
+                'Câmeras internas',
+                Icon(Icons.camera_alt),
+                InternalCameras(),
+              ),
+              BotaoCamera(
+                'Acompanhe o que acontece fora do seu veículo',
+                'Câmeras externas',
+                Icon(Icons.camera_outdoor),
+                ExternalCameras(),
+              )
+            ],
           ),
         ],
       ),
-      // floatingActionButton: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     FloatingActionButton(
-      //       onPressed: _connect,
-      //       tooltip: 'Play',
-      //       child: Icon(Icons.play_arrow),
-      //       ),
-      //     FloatingActionButton(
-      //       onPressed: _incrementCounter,
-      //       tooltip: 'Play',
-      //       child: Icon(Icons.play_arrow),
-      //     )
-
-      //   ],
-      // ),
       // bottomNavigationBar: BottomNavigation(),
     );
   }
-  
-  // int _counter = 0;
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //     _publishMessage(
-  //         topic6, "Essa mensagem está sendo enviada do aplicativo flutter para o tópico comunicacao");
-  //   });
-  // }
-
 }

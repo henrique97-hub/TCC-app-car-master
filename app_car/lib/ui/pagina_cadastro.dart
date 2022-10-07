@@ -1,6 +1,6 @@
 import 'package:app_car/ui/pagina_login.dart';
 import 'package:app_car/ui/pagina_configuracoes.dart';
-import 'package:app_car/ui/template_color.dart';
+import 'package:app_car/ui/pagina_logout.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
-  
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
@@ -41,7 +39,7 @@ class CadastroUsuario extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   CadastroUsuario({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -60,8 +58,7 @@ class CadastroUsuario extends StatelessWidget {
               child: TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(
-                  hintText: 'Email',
-                  prefixIcon: Icon(Icons.mail)),
+                    hintText: 'Email', prefixIcon: Icon(Icons.mail)),
               ),
             ),
             SizedBox(
@@ -69,9 +66,7 @@ class CadastroUsuario extends StatelessWidget {
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
-                  hintText: 'Password',
-                  prefixIcon: Icon(Icons.lock)
-                ),
+                    hintText: 'Password', prefixIcon: Icon(Icons.lock)),
               ),
             ),
             CamposCadastro(
@@ -86,8 +81,8 @@ class CadastroUsuario extends StatelessWidget {
                   password: _passwordController.text,
                 );
                 if (message!.contains('Success')) {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const HomePage()));
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const HomePage()));
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
@@ -96,6 +91,14 @@ class CadastroUsuario extends StatelessWidget {
                 );
               },
               child: const Text('Criar Conta'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey[900],
+                shape: const BeveledRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(5),
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 50),
             ElevatedButton(
@@ -126,7 +129,6 @@ class CadastroUsuario extends StatelessWidget {
 class CamposCadastro extends StatelessWidget {
   final String label;
   final Icon icone;
-
 
   const CamposCadastro(this.label, this.icone);
 
