@@ -1,9 +1,8 @@
 # app_car
 
-Projeto para a disciplina ecm963-aplicativos-hibridos 
+Projeto para o TCC 2022 - Instituto Mauá de Tecnologia
 
 ## Integrantes
--Caio Cruz Alfonso Garcia - RA: 15.01580-7
 
 -Henrique Silva Godoy - RA: 16.01147-3
 
