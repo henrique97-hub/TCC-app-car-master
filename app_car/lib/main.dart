@@ -11,9 +11,39 @@ import 'package:app_car/auth_service.dart';
 import 'package:app_car/widgets/mqtt_json.dart';
 import 'dart:async';
 import 'dart:convert';
+import 'package:awesome_notifications/awesome_notifications.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  AwesomeNotifications().initialize(
+    'resource://drawable/res_notification_app_icon',
+    [
+      NotificationChannel(
+        channelKey: 'alarm-channel',
+        channelName: 'Alarm Notifications',
+        defaultColor: const Color.fromARGB(255, 100, 100, 100),
+        importance: NotificationImportance.Max,
+        channelShowBadge: true, 
+        channelDescription: 'Local onde mostra se o alarme está ligado',
+      ),
+      NotificationChannel(
+        channelKey: 'sensor-channel',
+        channelName: 'Sensor Notifications',
+        defaultColor: const Color.fromARGB(255, 100, 100, 100),
+        importance: NotificationImportance.Max,
+        channelShowBadge: true, 
+        channelDescription: 'Local onde mostra se o sensor detecta alguem',
+      ),
+      NotificationChannel(
+        channelKey: 'impact-channel',
+        channelName: 'Impact Notifications',
+        defaultColor: const Color.fromARGB(255, 100, 100, 100),
+        importance: NotificationImportance.Max,
+        channelShowBadge: true, 
+        channelDescription: 'Mostra se o acelerometro detecta mudanças bruscas',
+      )
+    ],
+  );
   await Firebase.initializeApp();
   runApp(const MyApp());
 }

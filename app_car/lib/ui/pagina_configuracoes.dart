@@ -6,14 +6,21 @@ import 'package:app_car/ui/pagina_login.dart';
 import 'package:app_car/widgets/botao_acesso_camera.dart';
 import 'package:app_car/widgets/botao_alerta_sensores.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:app_car/widgets/notifications.dart';
+import 'package:app_car/widgets/globals.dart' as globals;
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -28,10 +35,10 @@ class _HomePageState extends State<HomePage> {
   String topic4 = 'esp32Sensor/S/movimento';
   String topic5 = 'esp32Sensor/S/GPS';
   String topic6 = 'esp32Sensor/comunicacao';
-
+  
+  @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
-
     return Scaffold(
       backgroundColor: tema.backgroundColor,
       appBar: AppBar(
@@ -40,7 +47,45 @@ class _HomePageState extends State<HomePage> {
         ),
         leading: IconButton(
           icon: Icon(Icons.notifications),
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Permitir Notificações'),
+            content: const Text('Ativar o envio de notificações?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  globals.status = false;
+                  print (globals.status);
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'Desativar',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              TextButton(
+                  onPressed: (){
+                    globals.status = true;
+                    print (globals.status);
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Ativar',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ))
+                ],
+              ),
+             );
+          },
         ),
         backgroundColor: Colors.black,
       ),
@@ -65,17 +110,17 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           SizedBox(height: 5),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: SizedBox(
-          //         child: const Image(
-          //           image: AssetImage('images/carApp.png'),
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          Row(
+            children: [
+              Expanded(
+                child: SizedBox(
+                  child: const Image(
+                    image: AssetImage('images/carApp.png'),
+                  ),
+                ),
+              ),
+            ],
+          ),
           SizedBox(height: 5),
           SizedBox(height: 20),
           Card(
@@ -111,10 +156,19 @@ class _HomePageState extends State<HomePage> {
                   Icon(Icons.campaign),'campainha', topic2
                 ),
                 BotaoAlerta(
-                  Icon(Icons.phone), 'telefone', topic3
+                  Icon(Icons.sensors), 'Sensor de Movimento', topic3
+                ),
+                IconButton(
+                  icon: Icon(Icons.phone), 
+                  color: Colors.white,
+                  onPressed: () {
+                  String telefone =  '190';
+                  final Uri _url = Uri.parse('tel://$telefone');
+                  launchUrl(_url);
+                  },
                 ),
                 BotaoAlerta(
-                  Icon(Icons.album), 'gravação', topic4
+                  Icon(Icons.double_arrow), 'Sensor de Presença', topic4
                 ),
                 BotaoAlerta(
                   Icon(Icons.map), 'GPS', topic5
@@ -126,49 +180,23 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            // children: [
-            //   BotaoCamera(
-            //     'Acompanhe o que acontece dentro do seu veículo',
-            //     'Câmeras internas',
-            //     Icon(Icons.camera_alt),
-            //     InternalCameras(),
-            //   ),
-            //   BotaoCamera(
-            //       'Acompanhe o que acontece fora do seu veículo',
-            //       'Câmeras externas',
-            //       Icon(Icons.camera_outdoor),
-            //       ExternalCameras())
-            // ],
+            children: [
+              BotaoCamera(
+                'Acompanhe o que acontece dentro do seu veículo',
+                'Câmeras internas',
+                Icon(Icons.camera_alt),
+                InternalCameras(),
+              ),
+              BotaoCamera(
+                  'Acompanhe o que acontece fora do seu veículo',
+                  'Câmeras externas',
+                  Icon(Icons.camera_outdoor),
+                  ExternalCameras())
+            ],
           ),
         ],
       ),
-      // floatingActionButton: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   children: [
-      //     FloatingActionButton(
-      //       onPressed: _connect,
-      //       tooltip: 'Play',
-      //       child: Icon(Icons.play_arrow),
-      //       ),
-      //     FloatingActionButton(
-      //       onPressed: _incrementCounter,
-      //       tooltip: 'Play',
-      //       child: Icon(Icons.play_arrow),
-      //     )
-
-      //   ],
-      // ),
-      // bottomNavigationBar: BottomNavigation(),
     );
   }
-  
-  // int _counter = 0;
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //     _publishMessage(
-  //         topic6, "Essa mensagem está sendo enviada do aplicativo flutter para o tópico comunicacao");
-  //   });
-  // }
 
 }
