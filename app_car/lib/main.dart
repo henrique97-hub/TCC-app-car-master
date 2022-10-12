@@ -13,7 +13,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:awesome_notifications/awesome_notifications.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AwesomeNotifications().initialize(
     'resource://drawable/res_notification_app_icon',
@@ -23,15 +23,15 @@ void main() async{
         channelName: 'Alarm Notifications',
         defaultColor: const Color.fromARGB(255, 100, 100, 100),
         importance: NotificationImportance.Max,
-        channelShowBadge: true, 
+        channelShowBadge: true,
         channelDescription: 'Local onde mostra se o alarme está ligado',
       ),
       NotificationChannel(
         channelKey: 'sensor-channel',
-        channelName: 'Sensor Notifications',
+        channelName: 'Presença detectada!',
         defaultColor: const Color.fromARGB(255, 100, 100, 100),
         importance: NotificationImportance.Max,
-        channelShowBadge: true, 
+        channelShowBadge: true,
         channelDescription: 'Local onde mostra se o sensor detecta alguem',
       ),
       NotificationChannel(
@@ -39,7 +39,7 @@ void main() async{
         channelName: 'Impact Notifications',
         defaultColor: const Color.fromARGB(255, 100, 100, 100),
         importance: NotificationImportance.Max,
-        channelShowBadge: true, 
+        channelShowBadge: true,
         channelDescription: 'Mostra se o acelerometro detecta mudanças bruscas',
       )
     ],
@@ -54,8 +54,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: RegisterPage(),
-      // home: HomePage(),
-      // home: VideoCam(),
     );
   }
 }
