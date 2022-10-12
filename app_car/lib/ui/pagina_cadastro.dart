@@ -1,6 +1,5 @@
 import 'package:app_car/ui/pagina_login.dart';
 import 'package:app_car/ui/pagina_configuracoes.dart';
-import 'package:app_car/ui/template_color.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
@@ -42,7 +40,7 @@ class CadastroUsuario extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordController2 = TextEditingController();
   CadastroUsuario({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -61,8 +59,7 @@ class CadastroUsuario extends StatelessWidget {
               child: TextField(
                 controller: _emailController,
                 decoration: const InputDecoration(
-                  hintText: 'Email',
-                  prefixIcon: Icon(Icons.mail)),
+                    hintText: 'Email', prefixIcon: Icon(Icons.mail)),
               ),
             ),
             SizedBox(
@@ -70,9 +67,7 @@ class CadastroUsuario extends StatelessWidget {
                 controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
-                  hintText: 'Password',
-                  prefixIcon: Icon(Icons.lock)
-                ),
+                    hintText: 'Password', prefixIcon: Icon(Icons.lock)),
               ),
             ),
             SizedBox(
@@ -80,46 +75,54 @@ class CadastroUsuario extends StatelessWidget {
                 controller: _passwordController2,
                 obscureText: true,
                 decoration: const InputDecoration(
-                  hintText: 'Digite Novamente sua senha',
-                  prefixIcon: Icon(Icons.lock)
-                ),
+                    hintText: 'Digite Novamente sua senha',
+                    prefixIcon: Icon(Icons.lock)),
               ),
             ),
             const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () async {
-                if (_passwordController2.text == _passwordController.text){
+                if (_passwordController2.text == _passwordController.text) {
                   final message = await AuthService().registration(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                );
-                if (message!.contains('Success')) {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const HomePage()));
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                  ),
-                );
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  );
+                  if (message!.contains('Success')) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const HomePage()));
+                  }
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(message),
+                    ),
+                  );
                 } else {
                   showDialog(
-                    context: context, 
-                    builder: (BuildContext context){
-                      return AlertDialog(
-                        title: const Text('Senhas Diferntes'),
-                        content: const Text('Senhas estão diferentes, favor preencher com o mesmo valor em ambos os campos'),
-                        actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'OK'),
-                        child: const Text('OK'),
-                      ),
-                    ], 
-                  );
-                  });
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Senhas Diferntes'),
+                          content: const Text(
+                              'Senhas estão diferentes, favor preencher com o mesmo valor em ambos os campos'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        );
+                      });
                 }
               },
               child: const Text('Criar Conta'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey[900],
+                shape: const BeveledRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(5),
+                  ),
+                ),
+              ),
             ),
             const SizedBox(height: 50),
             ElevatedButton(
@@ -150,7 +153,6 @@ class CadastroUsuario extends StatelessWidget {
 class CamposCadastro extends StatelessWidget {
   final String label;
   final Icon icone;
-
 
   const CamposCadastro(this.label, this.icone);
 

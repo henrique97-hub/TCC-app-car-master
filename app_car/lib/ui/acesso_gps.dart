@@ -1,15 +1,14 @@
-
-// https://pub.dev/packages/date_format/example
 import 'package:app_car/ui/camera_externa.dart';
+import 'package:app_car/ui/camera_interna.dart';
 import 'package:app_car/widgets/botao_acesso_camera.dart';
 import 'package:app_car/widgets/botao_alerta_sensores.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
+import 'package:app_car/widgets/notifications.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:app_car/widgets/globals.dart' as globals;
-
-import 'camera_interna.dart';
 
 class GpsAcesso extends StatefulWidget {
   // const GpsAcesso({Key? key}) : super(key: key);
@@ -29,7 +28,9 @@ class _GpsAcessoState extends State<GpsAcesso> {
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now().day;
-    // var formatter = new DateFormat()
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('dd/MM/yyyy - HH:mm:ss');
+    final String formatted = formatter.format(now);
 
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
     return Scaffold(
@@ -61,15 +62,7 @@ class _GpsAcessoState extends State<GpsAcesso> {
               child: Image.asset('assets/images/gps.png'),
             ),
           ),
-          SizedBox(height: 5),
-          Container(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              "Atualizado em ${today} ",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          SizedBox(height: 40),
+          SizedBox(height: 45),
           Card(
             color: Colors.grey[800],
             child: Row(
@@ -81,11 +74,11 @@ class _GpsAcessoState extends State<GpsAcesso> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(
-                          Icons.battery_charging_full_rounded,
+                          Icons.update,
                           color: Colors.white,
                         ),
                       ),
-                      Text("Saúde da bateria externa 98% ",
+                      Text("Atualizado em ${formatted} ",
                           style: TextStyle(color: Colors.white)),
                     ],
                   ),
@@ -99,29 +92,23 @@ class _GpsAcessoState extends State<GpsAcesso> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                
-                BotaoAlerta(
-                  Icon(Icons.campaign),'campainha', topic2
-                ),
-                BotaoAlerta(
-                  Icon(Icons.sensors), 'Sensor de Movimento', topic3
-                ),
+                BotaoAlerta(Icon(Icons.campaign), 'campainha', topic2),
+                BotaoAlerta(Icon(Icons.sensors), 'Sensor de Movimento', topic3),
                 IconButton(
-                  icon: Icon(Icons.phone), 
+                  icon: Icon(Icons.phone),
                   color: Colors.white,
                   onPressed: () {
-                  String telefone =  '190';
-                  final Uri _url = Uri.parse('tel://$telefone');
-                  launchUrl(_url);
-                  // createAlarmNotification();
+                    String telefone = '190';
+                    final Uri _url = Uri.parse('tel://$telefone');
+                    launchUrl(_url);
+                    // createAlarmNotification();
                   },
                 ),
                 BotaoAlerta(
-                  Icon(Icons.double_arrow), 'Sensor de Presença', topic4
-                ),
+                    Icon(Icons.double_arrow), 'Sensor de Presença', topic4),
+                // Criar um componente so para a gravação
                 BotaoAlerta(
-                  Icon(Icons.map), 'GPS', topic5
-                ),
+                    Icon(Icons.album), 'gravação em tempo real', topic5),
               ],
             ),
           ),

@@ -6,6 +6,7 @@ import 'package:app_car/ui/pagina_ajuda.dart';
 import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/ui/camera_interna.dart';
 import 'package:app_car/ui/pagina_login.dart';
+import 'package:app_car/ui/pagina_logout.dart';
 import 'package:app_car/ui/pagina_termos.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class BotaoRodapeState extends State<BotaoRodape> {
     TermosUsuario(),
     HomePage(),
     GpsAcesso(),
-    LoginPage(),
+    MyWidget(),
   ];
 
   void onTabTapped(int index) {

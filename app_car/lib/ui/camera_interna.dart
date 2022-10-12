@@ -5,12 +5,14 @@ import 'package:app_car/ui/pagina_configuracoes.dart';
 import 'package:app_car/widgets/botao_acesso_camera.dart';
 import 'package:app_car/widgets/botao_alerta_sensores.dart';
 import 'package:app_car/widgets/botoes_rodape.dart';
+import 'package:app_car/widgets/notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mjpeg/flutter_mjpeg.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:app_car/widgets/globals.dart' as globals;
-
+import 'package:intl/intl.dart';
+import 'package:mqtt_client/mqtt_client.dart' as mqtt;
 
 class InternalCameras extends StatefulWidget {
   const InternalCameras({Key? key}) : super(key: key);
@@ -29,6 +31,9 @@ class _InternalCamerasState extends State<InternalCameras> {
   @override
   Widget build(BuildContext context) {
     var isRunning = true;
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('dd/MM/yyyy - HH:mm:ss');
+    final String formatted = formatter.format(now);
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
 
     return Scaffold(
@@ -88,7 +93,7 @@ class _InternalCamerasState extends State<InternalCameras> {
                           color: Colors.white,
                         ),
                       ),
-                      Text("Atualizado em 25/06/2022 ás 16:55 ",
+                      Text("Atualizado em ${formatted} ",
                           style: TextStyle(color: Colors.white)),
                     ],
                   ),
@@ -102,28 +107,22 @@ class _InternalCamerasState extends State<InternalCameras> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                BotaoAlerta(
-                  Icon(Icons.campaign),'campainha', topic2
-                ),
-                BotaoAlerta(
-                  Icon(Icons.sensors), 'Sensor de Movimento', topic3
-                ),
+                BotaoAlerta(Icon(Icons.campaign), 'campainha', topic2),
+                BotaoAlerta(Icon(Icons.sensors), 'Sensor de Movimento', topic3),
                 IconButton(
-                  icon: Icon(Icons.phone), 
+                  icon: Icon(Icons.phone),
                   color: Colors.white,
                   onPressed: () {
-                  String telefone =  '190';
-                  final Uri _url = Uri.parse('tel://$telefone');
-                  launchUrl(_url);
-                  // createAlarmNotification();
+                    String telefone = '190';
+                    final Uri _url = Uri.parse('tel://$telefone');
+                    launchUrl(_url);
+                    // createAlarmNotification();
                   },
                 ),
                 BotaoAlerta(
-                  Icon(Icons.double_arrow), 'Sensor de Presença', topic4
-                ),
+                    Icon(Icons.double_arrow), 'Sensor de Presença', topic4),
                 BotaoAlerta(
-                  Icon(Icons.map), 'GPS', topic5
-                ),
+                    Icon(Icons.album), 'gravação em tempo real', topic5),
               ],
             ),
           ),

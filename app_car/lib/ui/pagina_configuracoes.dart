@@ -15,29 +15,29 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:app_car/widgets/notifications.dart';
+import 'package:intl/intl.dart';
 import 'package:app_car/widgets/globals.dart' as globals;
-
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-  
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
-  // @override
   String topic = 'esp32Sensor/status';
   String topic2 = 'esp32Sensor/alarme';
   String topic3 = 'esp32Sensor/S/presenca';
   String topic4 = 'esp32Sensor/S/movimento';
   String topic5 = 'esp32Sensor/S/GPS';
   String topic6 = 'esp32Sensor/comunicacao';
-  
+
   @override
   Widget build(BuildContext context) {
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('dd/MM/yyyy - HH:mm:ss');
+    final String formatted = formatter.format(now);
     final ThemeData tema = ThemeData(brightness: Brightness.dark);
     return Scaffold(
       backgroundColor: tema.backgroundColor,
@@ -46,45 +46,13 @@ class _HomePageState extends State<HomePage> {
           child: Text("Configurações"),
         ),
         leading: IconButton(
-          icon: Icon(Icons.notifications),
+          icon: (globals.status
+              ? Icon(Icons.notifications)
+              : Icon(Icons.notifications_off)),
           onPressed: () {
-            showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Permitir Notificações'),
-            content: const Text('Ativar o envio de notificações?'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  globals.status = false;
-                  print (globals.status);
-                  Navigator.pop(context);
-                },
-                child: const Text(
-                  'Desativar',
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
-              TextButton(
-                  onPressed: (){
-                    globals.status = true;
-                    print (globals.status);
-                    Navigator.pop(context);
-                  },
-                  child: const Text(
-                    'Ativar',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ))
-                ],
-              ),
-             );
+            setState(() {
+              globals.status = !globals.status;
+            });
           },
         ),
         backgroundColor: Colors.black,
@@ -115,13 +83,12 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: SizedBox(
                   child: const Image(
-                    image: AssetImage('images/carApp.png'),
+                    image: AssetImage('assets/images/carApp.png'),
                   ),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 5),
           SizedBox(height: 20),
           Card(
             color: Colors.grey[800],
@@ -138,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(
-                        "Atualizado em 25/06/2022 ás 16:55",
+                        "Atualizado em ${formatted}",
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -152,28 +119,21 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BotaoAlerta(
-                  Icon(Icons.campaign),'campainha', topic2
-                ),
-                BotaoAlerta(
-                  Icon(Icons.sensors), 'Sensor de Movimento', topic3
-                ),
+                BotaoAlerta(Icon(Icons.campaign), 'campainha', topic2),
+                BotaoAlerta(Icon(Icons.sensors), 'Sensor de Movimento', topic3),
                 IconButton(
-                  icon: Icon(Icons.phone), 
+                  icon: Icon(Icons.phone),
                   color: Colors.white,
                   onPressed: () {
-                  String telefone =  '190';
-                  final Uri _url = Uri.parse('tel://$telefone');
-                  launchUrl(_url);
+                    String telefone = '190';
+                    final Uri _url = Uri.parse('tel://$telefone');
+                    launchUrl(_url);
                   },
                 ),
                 BotaoAlerta(
-                  Icon(Icons.double_arrow), 'Sensor de Presença', topic4
-                ),
+                    Icon(Icons.double_arrow), 'Sensor de Presença', topic4),
                 BotaoAlerta(
-                  Icon(Icons.map), 'GPS', topic5
-                ),
-
+                    Icon(Icons.album), 'gravação em tempo real', topic5),
               ],
             ),
           ),
@@ -188,15 +148,15 @@ class _HomePageState extends State<HomePage> {
                 InternalCameras(),
               ),
               BotaoCamera(
-                  'Acompanhe o que acontece fora do seu veículo',
-                  'Câmeras externas',
-                  Icon(Icons.camera_outdoor),
-                  ExternalCameras())
+                'Acompanhe o que acontece fora do seu veículo',
+                'Câmeras externas',
+                Icon(Icons.camera_outdoor),
+                ExternalCameras(),
+              )
             ],
           ),
         ],
       ),
     );
   }
-
 }

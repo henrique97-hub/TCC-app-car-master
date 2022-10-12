@@ -74,6 +74,30 @@ class _ConfigAjudaState extends State<ConfigAjuda> {
           ),
           ListTile(
             leading: Icon(
+              Icons.double_arrow,
+              color: Colors.white,
+            ),
+            title: Text(
+              'Botão do Sensor de movimento: Indica que houve movimento no veículo.',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.sensors,
+              color: Colors.white,
+            ),
+            title: Text(
+              'Botão do sensor de presença: Indica que há presença dentro do veículo.',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(
               Icons.map,
               color: Colors.white,
             ),
