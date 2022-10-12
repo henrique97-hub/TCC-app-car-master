@@ -8,6 +8,6 @@ Projeto para o TCC 2022 - Instituto Mauá de Tecnologia
 
 -João Pedro de Padua Santoro Azevedo - RA: 18.02277-4
 
-- Luiz Guilherme Nunes Coelho - RA: 18.02503-3
+-Luiz Guilherme Nunes Coelho - RA: 18.02503-3
 
 -Rafaela Vechiez Pedroso - RA: 17.00129-3
